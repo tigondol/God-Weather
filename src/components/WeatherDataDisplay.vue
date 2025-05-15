@@ -21,6 +21,10 @@
             </div>
         </div>
     </div>
+    <div class="weather" v-else-if="weatherData.errorMessage">
+        <img :src="logoRoute" class="weather-icon">
+        <h3 class="description">Une ville inconnue ?!</h3>
+    </div>
 </template>
 
 <script lang="ts">
@@ -40,6 +44,8 @@ export default defineComponent({
             console.log('Mise à jour des données météo :', newVal);
             if (newVal.logo) {
                 logoRoute.value = new URL(`../assets/images/${newVal.logo}.png`, import.meta.url).href;
+            } else {
+                logoRoute.value = new URL(`../assets/images/zeusChock.png`, import.meta.url).href;
             }
         }, { deep: true });
 
